@@ -5,7 +5,7 @@
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Sign up</h1>
           <p class="text-xs-center">
-            <router-link :to="{name: 'login'}"> Have an account? </router-link>
+            <router-link :to="{name: 'login'}"> Need an account? </router-link>
           </p>
           <mcv-validation-errors
             v-if="validationErrors"
@@ -51,6 +51,7 @@
 
 <script>
 import {mapState} from 'vuex';
+
 import McvValidationErrors from '@/components/ValidationErrors.vue';
 import {actionTypes} from '@/store/modules/auth';
 export default {
@@ -70,16 +71,9 @@ export default {
       isSubmitting: (state) => state.auth.isSubmitting,
       validationErrors: (state) => state.auth.validationErrors,
     }),
-    // isSubmitting() {
-    //   return this.$store.state.auth.isSubmitting;
-    // },
-    // validationErrors() {
-    //   return this.$store.state.auth.validationErrors;
-    // },
   },
   methods: {
     onSubmit() {
-      console.log('onSubmit');
       this.$store
         .dispatch(actionTypes.register, {
           email: this.email,
@@ -87,13 +81,9 @@ export default {
           password: this.password,
         })
         .then(() => {
-          this.$router.push({name: 'home'});
+          this.$router.push({name: 'globalFeed'});
         });
     },
-    /* increaseCounter() { */
-    /*   console.log('increaseCounter') */
-    /*   this.$store.commit('increment') */
-    /* } */
   },
 };
 </script>
