@@ -16,8 +16,15 @@ const deleteArticle = (slug) => {
   return axios.delete(`/articles/${slug}`);
 };
 
+const updateArticle = (slug, articleInput) => {
+  return axios
+    .put(`/articles/${slug}`, articleInput)
+    .then((response) => response.data.article);
+};
+
 export default {
   getArticle,
   deleteArticle,
   createArticle,
+  updateArticle,
 };
